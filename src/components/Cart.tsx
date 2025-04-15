@@ -73,7 +73,7 @@ export const Cart: React.FC = () => {
               <div className="w-full space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="text-base font-medium">Total</span>
-                  <span className="text-xl font-bold">${getCartTotal().toFixed(2)}</span>
+                  <span className="text-xl font-bold">₹{getCartTotal().toFixed(2)}</span>
                 </div>
                 <div className="flex gap-2">
                   <Button

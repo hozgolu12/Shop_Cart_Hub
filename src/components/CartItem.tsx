@@ -28,7 +28,7 @@ export const CartItem: React.FC<CartItemProps> = ({ item }) => {
             {product.name}
           </h3>
           <p className="ml-4 text-sm font-medium text-gray-900">
-            ${(product.price * quantity).toFixed(2)}
+            ₹{(product.price * quantity).toFixed(2)}
           </p>
         </div>
 

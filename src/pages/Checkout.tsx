@@ -14,7 +14,7 @@ import {
   CardHeader, 
   CardTitle 
 } from "@/components/ui/card";
-import { ArrowLeft, CreditCard, Landmark, BadgePercent } from "lucide-react";
+import { ArrowLeft, CreditCard, Wallet, Smartphone } from "lucide-react";
 
 const Checkout: React.FC = () => {
   const { cartItems, getCartTotal, clearCart } = useCart();
@@ -71,7 +71,7 @@ const Checkout: React.FC = () => {
                       {item.product.name} x {item.quantity}
                     </span>
                     <span className="font-medium">
-                      ${(item.product.price * item.quantity).toFixed(2)}
+                      ₹{(item.product.price * item.quantity).toFixed(2)}
                     </span>
                   </div>
                 ))}
@@ -79,7 +79,7 @@ const Checkout: React.FC = () => {
               <div className="border-t pt-4">
                 <div className="flex justify-between font-bold text-lg">
                   <span>Total</span>
-                  <span>${getCartTotal().toFixed(2)}</span>
+                  <span>₹{getCartTotal().toFixed(2)}</span>
                 </div>
               </div>
             </CardContent>
@@ -113,6 +113,10 @@ const Checkout: React.FC = () => {
                     <Label htmlFor="email">Email</Label>
                     <Input id="email" type="email" required />
                   </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone Number</Label>
+                    <Input id="phone" type="tel" required />
+                  </div>
                 </div>
 
                 {/* Payment Method */}
@@ -131,17 +135,17 @@ const Checkout: React.FC = () => {
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 border rounded-md p-3">
-                      <RadioGroupItem value="bank-transfer" id="bank-transfer" />
-                      <Label htmlFor="bank-transfer" className="flex items-center">
-                        <Landmark size={16} className="mr-2" />
-                        Bank Transfer
+                      <RadioGroupItem value="upi" id="upi" />
+                      <Label htmlFor="upi" className="flex items-center">
+                        <Smartphone size={16} className="mr-2" />
+                        UPI
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2 border rounded-md p-3">
-                      <RadioGroupItem value="coupon" id="coupon" />
-                      <Label htmlFor="coupon" className="flex items-center">
-                        <BadgePercent size={16} className="mr-2" />
-                        Redeem Coupon
+                      <RadioGroupItem value="wallet" id="wallet" />
+                      <Label htmlFor="wallet" className="flex items-center">
+                        <Wallet size={16} className="mr-2" />
+                        Digital Wallet
                       </Label>
                     </div>
                   </RadioGroup>
@@ -159,33 +163,48 @@ const Checkout: React.FC = () => {
                         <Input id="expiry" placeholder="MM/YY" required />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="cvc">CVC</Label>
+                        <Label htmlFor="cvc">CVV</Label>
                         <Input id="cvc" placeholder="***" required />
                       </div>
                     </div>
                   </div>
                 )}
 
-                {paymentMethod === "bank-transfer" && (
-                  <div className="bg-muted p-4 rounded-md">
-                    <p className="text-sm">
-                      Please use the following details to complete your bank transfer:
-                    </p>
-                    <ul className="text-sm mt-2 space-y-1">
-                      <li>Bank Name: Example Bank</li>
-                      <li>Account Name: Shop Inc</li>
-                      <li>Account Number: 1234567890</li>
-                      <li>Reference: Your email address</li>
-                    </ul>
+                {paymentMethod === "upi" && (
+                  <div className="space-y-2">
+                    <Label htmlFor="upiId">UPI ID</Label>
+                    <div className="flex space-x-2">
+                      <Input id="upiId" placeholder="yourname@upi" className="flex-1" required />
+                    </div>
                   </div>
                 )}
 
-                {paymentMethod === "coupon" && (
-                  <div className="space-y-2">
-                    <Label htmlFor="couponCode">Coupon Code</Label>
-                    <div className="flex space-x-2">
-                      <Input id="couponCode" placeholder="Enter your coupon" className="flex-1" />
-                      <Button type="button" variant="outline">Apply</Button>
+                {paymentMethod === "wallet" && (
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <Label>Select Wallet</Label>
+                      <div className="grid grid-cols-2 gap-2">
+                        <Button type="button" variant="outline" className="justify-start">
+                          <img src="https://img.icons8.com/color/48/000000/paytm.png" alt="PayTM" className="w-5 h-5 mr-2" />
+                          PayTM
+                        </Button>
+                        <Button type="button" variant="outline" className="justify-start">
+                          <img src="https://img.icons8.com/color/48/000000/phonepe.png" alt="PhonePe" className="w-5 h-5 mr-2" />
+                          PhonePe
+                        </Button>
+                        <Button type="button" variant="outline" className="justify-start">
+                          <img src="https://img.icons8.com/color/48/000000/amazon-pay.png" alt="Amazon Pay" className="w-5 h-5 mr-2" />
+                          Amazon Pay
+                        </Button>
+                        <Button type="button" variant="outline" className="justify-start">
+                          <img src="https://img.icons8.com/color/48/000000/google-pay-india.png" alt="Google Pay" className="w-5 h-5 mr-2" />
+                          Google Pay
+                        </Button>
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="mobileNumber">Mobile Number</Label>
+                      <Input id="mobileNumber" placeholder="Enter registered mobile number" required />
                     </div>
                   </div>
                 )}
@@ -197,7 +216,7 @@ const Checkout: React.FC = () => {
                   className="w-full" 
                   disabled={isProcessing}
                 >
-                  {isProcessing ? "Processing..." : `Pay $${getCartTotal().toFixed(2)}`}
+                  {isProcessing ? "Processing..." : `Pay ₹${getCartTotal().toFixed(2)}`}
                 </Button>
               </CardFooter>
             </Card>
