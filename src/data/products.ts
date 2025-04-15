@@ -27,7 +27,7 @@ export const products: Product[] = [
     id: 4,
     name: "Ergonomic Gaming Chair",
     price: 249.99,
-    image: "https://images.unsplash.com/photo-1596162954151-fdfa9bd96058?q=80&w=1000&auto=format&fit=crop",
+    image: "https://plus.unsplash.com/premium_photo-1678112179122-50605ebc5697?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     description: "Game in comfort with this ergonomic gaming chair featuring adjustable armrests and lumbar support."
   },
   {

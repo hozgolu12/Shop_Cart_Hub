@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
 import { CartItem } from "@/components/CartItem";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, X } from "lucide-react";
+import { ShoppingCart} from "lucide-react";
 import { 
   Sheet, 
   SheetContent, 
@@ -41,11 +41,6 @@ export const Cart: React.FC = () => {
         <SheetHeader className="border-b pb-4">
           <div className="flex justify-between items-center">
             <SheetTitle className="text-xl font-bold">Your Cart</SheetTitle>
-            <SheetClose asChild>
-              <Button variant="ghost" size="icon">
-                <X size={18} />
-              </Button>
-            </SheetClose>
           </div>
         </SheetHeader>
         
